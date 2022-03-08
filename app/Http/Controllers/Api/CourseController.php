@@ -64,7 +64,20 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $file = $request->file("image");
+        $file_name = $file->hashName();
+        if( Storage::disk('public')->exists("courses/".$course->url_image)){
+            Storage::disk('public')->delete("courses/".$course->url_image);
+        }
+        
+        Storage::disk('public')->putFileAs("courses",$file,$file_name);
+
+        $course->name = $request->name;
+        $course->description = $request->description;
+        $course->url_image = $file_name;
+
+        $course->save();
+        return new CourseResource($course);
     }
 
     /**

@@ -16,7 +16,7 @@ class CourseResource extends JsonResource
     {
         return [
             "course_name" => $this->name,
-            "url_image" => $this->url_image,
+            "url_image" => $this->getUrlImage(),
             "description" => $this->description,
         ];
     }

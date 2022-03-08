@@ -13,7 +13,7 @@ class Course extends Model
         "url_image",
         "description",
     ];
-    public function getUrlImageAttribute($value){
-        return url("/")."/storage/courses/".$value;
+    public function getUrlImage(){
+        return url("/")."/storage/courses/".$this->url_image;
     }
 }

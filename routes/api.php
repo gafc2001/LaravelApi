@@ -9,9 +9,11 @@ use App\Http\Controllers\Api\AuthController;
 //     return $request->user();
 // });
 
-Route::apiResource('books',CourseController::class)->only(['index','show','update'])
+Route::apiResource('courses',CourseController::class)->only(['index','show','update'])
 ->middleware("auth:sanctum");
-Route::post("users/{user}/books",[CourseController::class,'store'])
+
+Route::post("users/{user}/courses",[CourseController::class,'store'])
 ->middleware("auth:sanctum");;
+
 Route::post("login",[AuthController::class,'login']);
 Route::post("signup",[AuthController::class,'signup']);
